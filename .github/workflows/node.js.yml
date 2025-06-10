@@ -1,0 +1,24 @@
+name: Copy Build
+
+on:
+    push:
+        branches: ['main']
+
+jobs:
+    build:
+        runs-on: self-hosted
+
+        steps:
+            - name: Checkout source code
+              uses: actions/checkout@v2
+
+            - name: Copy build folder to new path
+              run: cp -r build/ /var/www/frontend/
+
+            - name: Clean up server files
+              run: find . -mindepth 1 -maxdepth 1 -not -name 'build' -not -name '.' -exec rm -rf {} +
+            - name: Restart NGINX
+              run: sudo nginx -s reload
+
+        env:
+            REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
