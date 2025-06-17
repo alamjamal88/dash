@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import fs from 'fs/promises';
 import svgr from '@svgr/rollup';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,7 +18,8 @@ export default defineConfig({
         exclude: []
     },
     build: {
-        outDir: 'build' // Check if this is set
+        outDir: 'build',
+        chunkSizeWarningLimit: 700 // Increase warning limit (optional)
     },
     server: {
         watch: {
