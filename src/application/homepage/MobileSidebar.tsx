@@ -6,7 +6,6 @@ import { NavLinks } from './NavLinks';
 import { Chip, Toolbar } from '@mui/material';
 
 const MobileSidebar = () => {
-    
     const scrollToSection = (id: string) => {
         const el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: 'smooth' });

@@ -130,6 +130,7 @@ const WidgetCharts = Loadable(lazy(() => import('../views/widgets/charts/WidgetC
 //auth
 const Login = Loadable(lazy(() => import('../views/authentication/auth1/Login')));
 const Login2 = Loadable(lazy(() => import('../views/authentication/auth2/Login2')));
+const Login4 = Loadable(lazy(() => import('../views/authentication/auth4/Login4')));
 const Register = Loadable(lazy(() => import('../views/authentication/auth1/Register')));
 const Register2 = Loadable(lazy(() => import('../views/authentication/auth2/Register2')));
 const ForgotPassword = Loadable(lazy(() => import('../views/authentication/auth1/ForgotPassword')));
@@ -137,6 +138,7 @@ const ForgotPassword2 = Loadable(lazy(() => import('../views/authentication/auth
 const TwoSteps2 = Loadable(lazy(() => import('../views/authentication/auth2/TwoSteps2')));
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintenance')));
+const RegisterForm = Loadable(lazy(() => import('../views/authentication/temp/RegisterForm')));
 
 const TempRoutes: RouteObject[] = [
     {
@@ -198,7 +200,6 @@ const TempRoutes: RouteObject[] = [
             { path: 'forms/form-elements/slider', element: <MuiSlider /> },
             { path: 'forms/form-elements/date-time', element: <MuiDateTime /> },
             { path: 'forms/form-elements/switch', element: <MuiSwitch /> },
-            { path: 'forms/form-elements/switch', element: <MuiSwitch /> },
             { path: 'forms/form-layouts', element: <FormLayouts /> },
             { path: 'forms/form-custom', element: <FormCustom /> },
             { path: 'forms/form-wizard', element: <FormWizard /> },
@@ -248,12 +249,14 @@ const TempRoutes: RouteObject[] = [
 
             { path: 'login2', element: <Login /> },
             { path: 'login3', element: <Login2 /> },
+            { path: 'login4', element: <Login4 /> },
             { path: 'register', element: <Register /> },
             { path: 'register2', element: <Register2 /> },
             { path: 'forgot-password', element: <ForgotPassword /> },
             { path: 'forgot-password2', element: <ForgotPassword2 /> },
             { path: 'two-steps2', element: <TwoSteps2 /> },
             { path: 'maintenance', element: <Maintenance /> },
+            { path: 'temp-register', element: <RegisterForm /> },
             { path: '*', element: <Navigate to="/404" /> }
         ]
     }

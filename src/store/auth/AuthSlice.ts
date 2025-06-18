@@ -140,18 +140,31 @@ export const userLogin = createAsyncThunk<LoginResponse, Record<string, any>, { 
 //     }
 // );
 
-// export const userRegister = createAsyncThunk<any, Record<string, any>, { rejectValue: ErrorResponse }>(
-//     'auth/userRegister',
-//     async (payload, { rejectWithValue }) => {
-//         try {
-//             const response = await axiosPublic.post<any>('/users/public/register/', payload);
-//             return response.data;
-//         } catch (error) {
-//             const axiosError = error as AxiosError<ErrorResponse>;
-//             return rejectWithValue(errorHandler(axiosError));
-//         }
-//     }
-// );
+interface UserRegisterResponse {
+    token: string;
+    user: UserData;
+}
+
+interface UserRegisterPayload extends FormData {
+    // FormData will contain both file and JSON data
+}
+
+export const userRegister = createAsyncThunk<UserRegisterResponse, UserRegisterPayload, { rejectValue: ErrorResponse }>(
+    'auth/userRegister',
+    async (formData, { rejectWithValue }) => {
+        try {
+            const response = await axiosPublic.post<UserRegisterResponse>('/users/public/register/', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            return response.data;
+        } catch (error) {
+            const axiosError = error as AxiosError<ErrorResponse>;
+            return rejectWithValue(errorHandler(axiosError));
+        }
+    }
+);
 
 // export const activateAccount = createAsyncThunk<any, Record<string, any>, { rejectValue: ErrorResponse }>(
 //     'auth/activateAccount',
