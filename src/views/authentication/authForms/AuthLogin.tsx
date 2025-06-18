@@ -65,7 +65,7 @@ const AuthLogin = ({ title, subtitle, subtext, clickButton, handleChange, formik
                     <CustomTextField
                         name="email"
                         variant="outlined"
-                        onChange={formik.handleChange}
+                        onChange={handleChange}
                         value={formik.values.email}
                         onBlur={formik.handleBlur}
                         error={Boolean(formik.errors.email && formik.touched.email)}
@@ -83,7 +83,7 @@ const AuthLogin = ({ title, subtitle, subtext, clickButton, handleChange, formik
                         name="password"
                         type={showPassword ? 'text' : 'password'}
                         fullWidth
-                        onChange={formik.handleChange}
+                        onChange={handleChange}
                         value={formik.values.password}
                         onBlur={formik.handleBlur}
                         endAdornment={

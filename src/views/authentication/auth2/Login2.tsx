@@ -3,6 +3,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Grid2 as Grid, Box, Card, Stack, Typography } from '@mui/material';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 // components
 import PageContainer from 'src/components/container/PageContainer';
@@ -10,6 +12,24 @@ import Logo from 'src/layouts/full/shared/logo/Logo';
 import AuthLogin from '../authForms/AuthLogin';
 
 const Login2 = () => {
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        validationSchema: Yup.object({
+            email: Yup.string().email('Invalid email address').required('Email is required'),
+            password: Yup.string().required('Password is required')
+        }),
+        onSubmit: (values, { setSubmitting }) => {
+            // Handle login logic here
+            setTimeout(() => {
+                setSubmitting(false);
+                // You can add navigation or success logic here
+            }, 1000);
+        }
+    });
+
     return (
         <PageContainer title="Login" description="this is Login page">
             <Box
@@ -43,26 +63,31 @@ const Login2 = () => {
                             <Box display="flex" alignItems="center" justifyContent="center">
                                 <Logo />
                             </Box>
-                            <AuthLogin
-                                subtitle={
-                                    <Stack direction="row" spacing={1} justifyContent="center" mt={3}>
-                                        <Typography color="textSecondary" variant="h6" fontWeight="500">
-                                            New to Modernize?
-                                        </Typography>
-                                        <Typography
-                                            component={Link}
-                                            to="/auth/register"
-                                            fontWeight="500"
-                                            sx={{
-                                                textDecoration: 'none',
-                                                color: 'primary.main'
-                                            }}
-                                        >
-                                            Create an account
-                                        </Typography>
-                                    </Stack>
-                                }
-                            />
+                            <form onSubmit={formik.handleSubmit}>
+                                <AuthLogin
+                                    formik={formik}
+                                    handleChange={formik.handleChange}
+                                    clickButton={formik.handleSubmit}
+                                    subtitle={
+                                        <Stack direction="row" spacing={1} justifyContent="center" mt={3}>
+                                            <Typography color="textSecondary" variant="h6" fontWeight="500">
+                                                New to Modernize?
+                                            </Typography>
+                                            <Typography
+                                                component={Link}
+                                                to="/auth/register"
+                                                fontWeight="500"
+                                                sx={{
+                                                    textDecoration: 'none',
+                                                    color: 'primary.main'
+                                                }}
+                                            >
+                                                Create an account
+                                            </Typography>
+                                        </Stack>
+                                    }
+                                />
+                            </form>
                         </Card>
                     </Grid>
                 </Grid>
