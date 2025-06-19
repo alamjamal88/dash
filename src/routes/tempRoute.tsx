@@ -1,10 +1,9 @@
 import React, { lazy } from 'react';
-import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
+import { Navigate, RouteObject } from 'react-router-dom';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
-const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
 
 /* ****Pages***** */
 const ModernDash = Loadable(lazy(() => import('../views/dashboard/Modern')));
@@ -136,16 +135,16 @@ const Register2 = Loadable(lazy(() => import('../views/authentication/auth2/Regi
 const ForgotPassword = Loadable(lazy(() => import('../views/authentication/auth1/ForgotPassword')));
 const ForgotPassword2 = Loadable(lazy(() => import('../views/authentication/auth2/ForgotPassword2')));
 const TwoSteps2 = Loadable(lazy(() => import('../views/authentication/auth2/TwoSteps2')));
-const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Maintenance = Loadable(lazy(() => import('../views/authentication/Maintenance')));
 const RegisterForm = Loadable(lazy(() => import('../views/authentication/temp/RegisterForm')));
+const StepperRegister = Loadable(lazy(() => import('../views/authentication/stepperRegister/StepperRegister')));
 
 const TempRoutes: RouteObject[] = [
     {
         path: '/temp',
         element: <FullLayout />,
         children: [
-            // { path: '/', element: <Navigate to="/temp/dashboards/modern" /> },
+            { path: '', element: <Navigate to="/temp/dashboards/modern" /> },
             { path: 'dashboards/modern', element: <ModernDash /> },
             { path: 'dashboards/ecommerce', element: <EcommerceDash /> },
             { path: 'apps/contacts', element: <Contacts /> },
@@ -257,10 +256,11 @@ const TempRoutes: RouteObject[] = [
             { path: 'two-steps2', element: <TwoSteps2 /> },
             { path: 'maintenance', element: <Maintenance /> },
             { path: 'temp-register', element: <RegisterForm /> },
+            { path: 'stepper-register', element: <StepperRegister /> },
+
             { path: '*', element: <Navigate to="/404" /> }
         ]
     }
 ];
-// const router = createBrowserRouter(Router);
 
 export default TempRoutes;
